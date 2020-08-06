@@ -60,6 +60,26 @@ export default {
           if(this.keyword ==''){
               alert('error')
           }
+          var data = null;
+            //获取数据
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function () {
+              if (this.readyState === 4) {
+                console.log(this.responseText);
+              }
+            });
+
+            xhr.open("GET", "http://127.0.0.1:5000/search?name=%E7%81%AB%E5%BD%B1");
+            xhr.setRequestHeader("cache-control", "no-cache");
+            xhr.setRequestHeader("postman-token", "b63630d6-1dbc-4bf0-bb31-8f3422b0e25e");
+
+            xhr.send(data);
+
+
+
+
       }
 
   }
