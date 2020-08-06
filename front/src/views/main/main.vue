@@ -60,7 +60,6 @@ export default {
           if(this.keyword ==''){
               alert('error')
           }
-
       }
 
   }

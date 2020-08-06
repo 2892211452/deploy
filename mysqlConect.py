@@ -1,7 +1,6 @@
 
 import pymysql
 from path import *
-from dataTest import *
 
 
 
@@ -49,7 +48,6 @@ select * from dm where title  like '%name%';
         res =[]
         for row in results:
             title = row[0]
-            print(title)
             url = row[1]
             image = row[2]
             src = row[3]
