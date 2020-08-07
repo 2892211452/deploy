@@ -51,6 +51,36 @@ select * from dm where title  like '%name%';
             url = row[1]
             image = row[2]
             src = row[3]
+
+            # 对src 进行数组化处理
+            src = list(src)
+            length = len(src)
+            src = src[1:(length-1)]
+            src = ''.join(src)
+            print(src)
+
+            print(type(src))
+            import re
+            r=re.compile('\[.*?\]')
+            content=r.findall(src)
+            ans =[]
+            for i in content:
+                print(i)
+                i = i.replace('[','')
+                i = i.replace("'",'')
+
+                i = i.replace(']','')
+                r = i.split(',')
+                
+                ans.append({
+                    '': r[0],
+                    '2':r[1]
+                })
+            src = ans
+
+
+
+
             res.append({
                 'title':title,
                 'url':url,
@@ -71,22 +101,22 @@ select * from dm where title  like '%name%';
 
 
 if __name__ =="__main__":
-    for i in range(1, 7266):
-        try:
-            output = open(FileDir+'/dm/data'+str(i) +'.pkl', 'rb')
+    # for i in range(1, 7266):
+    #     try:
+    #         output = open(FileDir+'/dm/data'+str(i) +'.pkl', 'rb')
 
 
-            data=pickle.load(output)
-            src = str(data['video'])
-            title = data['name']
-            url = data['url']
-            img = data['imgUrl']
-            insert(title, url, img, src)
-            if i % 10 ==0:
-                print(i)
-        except:
-            print('error')
+    #         data=pickle.load(output)
+    #         src = str(data['video'])
+    #         title = data['name']
+    #         url = data['url']
+
+    #         img = data['imgUrl']
+    #         insert(title, url, img, src)
+    #         if i % 10 ==0:
+    #             print(i)
+    #     except:
+    #         print('error')
     
 
-    #select('海贼')
-
+    pass

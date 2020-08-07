@@ -26,6 +26,9 @@ def get_data():
     
     # 经过处理之后得到要传回的数据
     res= select(name)
+    print(type(res))
+    res = list(res)
+
     ans = {
         'content':res,
         'status':200

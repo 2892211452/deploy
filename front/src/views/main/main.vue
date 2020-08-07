@@ -8,16 +8,16 @@
       @search="search_click"
     />
 
-    <div id='card'>
+    <div id='card' v-for="dm in dmList"  :key="dm.message">
             <a-card hoverable style="width: 240px">
             <img
             slot="cover"
             alt="example"
-            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+            :src="dm['image']"
             />
-            <a-card-meta title="Europe Street beat">
+            <a-card-meta :title="dm['title']">
             <template slot="description">
-                www.instagram.com
+             a wonderful 动漫
             </template>
             </a-card-meta>
         </a-card>
@@ -47,7 +47,10 @@ export default {
  data() {
     return {
       msg: "message",
-      keyword:''
+      keyword:'',
+      dmList:[
+       
+      ]
       
     };
 
@@ -60,6 +63,9 @@ export default {
           if(this.keyword ==''){
               alert('error')
           }
+
+
+          var selfa =this;
           var data = null;
             //获取数据
             var xhr = new XMLHttpRequest();
@@ -67,7 +73,37 @@ export default {
 
             xhr.addEventListener("readystatechange", function () {
               if (this.readyState === 4) {
-                console.log(this.responseText);
+                data =JSON.parse(this.responseText)
+                data = data['content']
+                console.log(data.length)
+                
+                selfa.dmList=[]
+
+                for(var i =0; i < data.length; i++){
+                  console.log(data[i])
+                 var tmp = data[i]
+
+                // var  src = tmp['src']
+                //   console.log(src.length)
+                //   for(var j =0; j < src.length; j++){
+                //     console.log(src[j])
+                //   }
+
+
+
+
+
+                  selfa.dmList.push({
+                    'title':tmp['title'],
+                    'image':tmp['image'],
+                    'url':tmp['tul'],
+                    'src':tmp['src']
+                  })
+                }
+
+            console.log(selfa.dmList)
+
+
               }
             });
 
