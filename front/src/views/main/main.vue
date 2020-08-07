@@ -118,7 +118,7 @@ export default {
               }
             });
 
-            xhr.open("GET", "http://127.0.0.1:5000/search?name=" + selfa.keyword);
+            xhr.open("GET", "http://119.29.143.49:5000/search?name=" + selfa.keyword);
             xhr.setRequestHeader("cache-control", "no-cache");
             xhr.setRequestHeader("postman-token", "b63630d6-1dbc-4bf0-bb31-8f3422b0e25e");
 
