@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
 import hello from '../views/hello/hello.vue'
 import main from '../views/main/main.vue'
+import video from '../views/main/video.vue'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,11 @@ Vue.use(VueRouter)
     path: '/',
     name: 'main',
     component: main
+  },
+  {
+    path:'/video',
+    name:'video',
+    component:video
   },
   {
     path: '/about',

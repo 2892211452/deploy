@@ -57,9 +57,7 @@ select * from dm where title  like '%name%';
             length = len(src)
             src = src[1:(length-1)]
             src = ''.join(src)
-            print(src)
 
-            print(type(src))
             import re
             r=re.compile('\[.*?\]')
             content=r.findall(src)
@@ -70,11 +68,16 @@ select * from dm where title  like '%name%';
                 i = i.replace("'",'')
 
                 i = i.replace(']','')
+
+                i = i.replace(' ','') # 删除空格 调了半天bug
+
                 r = i.split(',')
                 
+                # # 加入解析的接口
+                # r[1]="https://saas.jialingmm.net/code.php?type=flv&amp;vid="+r[1]+"&amp;userlink=http%3A%2F%2Fwww.imomoe.in%2Fplayer%2F7845-0-0.html&amp;adress=HuNan_ChangSha"
                 ans.append({
-                    '': r[0],
-                    '2':r[1]
+                    '集数': r[0],
+                    'url':r[1]
                 })
             src = ans
 
@@ -118,5 +121,7 @@ if __name__ =="__main__":
     #     except:
     #         print('error')
     
-
+    ans = select('火影')
+    print(ans)
+    
     pass

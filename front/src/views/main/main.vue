@@ -9,7 +9,7 @@
     />
 
     <div id='card' v-for="dm in dmList"  :key="dm.message">
-            <a-card hoverable style="width: 240px">
+            <a-card hoverable style="width: 240px" v-on:click="select_click(dm)" >
             <img
             slot="cover"
             alt="example"
@@ -57,6 +57,17 @@ export default {
    
   },
   methods: {
+
+    select_click(dm){
+      console.log(dm)
+      this.$store.state.list = dm['src']
+      this.$store.state.nowDm = dm['title']
+      
+      this.$store.state.imgUrl = dm['image']
+
+      this.$router.push('/video')
+    },
+
       search_click(){
           console.log('ckick')
           console.log(this.keyword)
@@ -107,7 +118,7 @@ export default {
               }
             });
 
-            xhr.open("GET", "http://127.0.0.1:5000/search?name=%E7%81%AB%E5%BD%B1");
+            xhr.open("GET", "http://127.0.0.1:5000/search?name=" + selfa.keyword);
             xhr.setRequestHeader("cache-control", "no-cache");
             xhr.setRequestHeader("postman-token", "b63630d6-1dbc-4bf0-bb31-8f3422b0e25e");
 

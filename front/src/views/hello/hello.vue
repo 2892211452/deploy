@@ -24,7 +24,13 @@ export default {
     return {
       msg: "message"
     };
-  }
+    
+  },
+  methods:{
+      hello(){
+        console.log('hello')
+      }
+    }
  
 }
 </script>
